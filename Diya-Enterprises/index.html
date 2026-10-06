@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diya Enterprises – Engineer's & Contractors</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --steel:   #0D1F2D;
+    --mid:     #1C3A50;
+    --teal:    #1A7FA0;
+    --amber:   #E8A020;
+    --offwhite:#F0EDE8;
+    --light:   #D6DDE3;
+    --muted:   #8AA0AE;
+    --white:   #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--steel); color: var(--offwhite); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 64px;
+    background: rgba(13,31,45,0.92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(26,127,160,0.2);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 38px; height: 38px; border: 2px solid var(--teal);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark span {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+    font-size: 18px; color: var(--teal); letter-spacing: -1px;
+  }
+  .logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 17px; color: var(--white); letter-spacing: 0.5px; line-height: 1.1; }
+  .logo-text small { display: block; font-size: 10px; font-weight: 400; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--light); letter-spacing: 0.5px; transition: color 0.2s; }
+  nav ul a:hover { color: var(--amber); }
+  .nav-cta {
+    background: var(--teal); color: var(--white); padding: 8px 18px;
+    border-radius: 4px; font-size: 13px; font-weight: 600; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #1e97be; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 5vw 80px;
+    background: linear-gradient(160deg, #0D1F2D 0%, #1C3A50 60%, #0a2a3a 100%);
+    overflow: hidden;
+  }
+  /* Structural grid lines – signature element */
+  .hero-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(26,127,160,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,127,160,0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .crane-silhouette {
+    position: absolute; right: 0; bottom: 0; height: 80%;
+    opacity: 0.06; pointer-events: none;
+  }
+  /* Diagonal amber bar */
+  .hero::after {
+    content: '';
+    position: absolute; left: -10%; top: 30%; width: 6px; height: 55%;
+    background: var(--amber);
+    transform: rotate(-8deg);
+    opacity: 0.7;
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--amber);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(52px, 8vw, 96px); font-weight: 800; line-height: 0.95;
+    color: var(--white); text-transform: uppercase; letter-spacing: -1px;
+    max-width: 780px;
+  }
+  .hero h1 em { color: var(--teal); font-style: normal; }
+  .hero-sub {
+    margin-top: 24px; font-size: 17px; font-weight: 300; color: var(--light);
+    max-width: 480px; line-height: 1.65;
+  }
+  .hero-actions { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--amber); color: var(--steel); font-weight: 700;
+    padding: 14px 30px; border-radius: 4px; text-decoration: none;
+    font-size: 14px; letter-spacing: 0.5px; transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,160,32,0.35); }
+  .btn-outline {
+    border: 1.5px solid var(--teal); color: var(--teal); font-weight: 600;
+    padding: 14px 30px; border-radius: 4px; text-decoration: none;
+    font-size: 14px; letter-spacing: 0.5px; transition: background 0.15s, color 0.15s;
+  }
+  .btn-outline:hover { background: var(--teal); color: var(--white); }
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 60px; padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 42px; font-weight: 800;
+    color: var(--white); line-height: 1;
+  }
+  .stat-num span { color: var(--amber); }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 5vw; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 4vw, 54px); font-weight: 800;
+    text-transform: uppercase; color: var(--white); line-height: 1;
+  }
+  .section-title em { color: var(--amber); font-style: normal; }
+  .divider { width: 48px; height: 3px; background: var(--teal); margin: 20px 0 40px; }
+
+  /* ── ABOUT ── */
+  .about { background: var(--mid); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .about-body { font-size: 15px; line-height: 1.8; color: var(--light); }
+  .about-body p + p { margin-top: 16px; }
+  .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+  .pillar {
+    border: 1px solid rgba(26,127,160,0.25); border-radius: 8px;
+    padding: 20px; background: rgba(13,31,45,0.5);
+    transition: border-color 0.2s;
+  }
+  .pillar:hover { border-color: var(--teal); }
+  .pillar-icon { font-size: 22px; margin-bottom: 8px; }
+  .pillar-title { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; color: var(--white); }
+  .pillar-desc { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+  /* ── CLIENTS ── */
+  .clients { background: var(--steel); }
+  .clients-marquee {
+    overflow: hidden; margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 24px 0;
+  }
+  .clients-track {
+    display: flex; gap: 56px; animation: scroll 30s linear infinite;
+    white-space: nowrap;
+  }
+  .clients-track:hover { animation-play-state: paused; }
+  .client-name {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 1px;
+    flex-shrink: 0; transition: color 0.2s;
+  }
+  .client-name:hover { color: var(--white); }
+  @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── TEAM ── */
+  .team { background: var(--mid); }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 40px; }
+  .team-card {
+    background: var(--steel); border: 1px solid rgba(26,127,160,0.15);
+    border-radius: 10px; padding: 28px; transition: transform 0.2s, border-color 0.2s;
+  }
+  .team-card:hover { transform: translateY(-4px); border-color: var(--teal); }
+  .team-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--mid));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--white);
+    margin-bottom: 16px;
+  }
+  .team-name { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); }
+  .team-role { font-size: 11px; color: var(--amber); text-transform: uppercase; letter-spacing: 1.5px; margin: 4px 0 12px; }
+  .team-qual { font-size: 12px; color: var(--muted); }
+  .team-exp {
+    display: inline-block; margin-top: 14px;
+    background: rgba(26,127,160,0.12); border: 1px solid rgba(26,127,160,0.3);
+    padding: 4px 10px; border-radius: 20px; font-size: 11px; color: var(--teal); font-weight: 600;
+  }
+
+  /* ── PROJECTS ── */
+  .projects { background: var(--steel); }
+  .project-tabs { display: flex; gap: 4px; margin-bottom: 32px; }
+  .tab-btn {
+    background: none; border: 1px solid rgba(255,255,255,0.1);
+    color: var(--muted); font-size: 13px; font-weight: 500;
+    padding: 8px 20px; border-radius: 4px; cursor: pointer; transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .tab-btn.active, .tab-btn:hover { background: var(--teal); border-color: var(--teal); color: var(--white); }
+  .project-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .project-table thead tr { border-bottom: 1px solid rgba(26,127,160,0.4); }
+  .project-table th { padding: 10px 16px; text-align: left; color: var(--muted); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+  .project-table td { padding: 12px 16px; color: var(--light); border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .project-table tr:hover td { background: rgba(26,127,160,0.06); }
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px;
+    font-weight: 600; letter-spacing: 0.5px;
+  }
+  .badge-done { background: rgba(32,160,96,0.15); color: #4cde8c; border: 1px solid rgba(76,222,140,0.2); }
+  .badge-ongoing { background: rgba(232,160,32,0.15); color: var(--amber); border: 1px solid rgba(232,160,32,0.3); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── EQUIPMENT ── */
+  .equipment { background: var(--mid); }
+  .equip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 40px; }
+  .equip-card {
+    background: var(--steel); border: 1px solid rgba(26,127,160,0.15);
+    border-radius: 8px; padding: 24px; text-align: center;
+  }
+  .equip-icon { font-size: 32px; margin-bottom: 12px; }
+  .equip-name { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); text-transform: uppercase; }
+  .equip-qty { font-size: 28px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; color: var(--amber); margin-top: 6px; }
+  .equip-unit { font-size: 11px; color: var(--muted); }
+
+  /* ── ASSOCIATES ── */
+  .associates { background: var(--steel); }
+  .assoc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 40px; }
+  .assoc-card {
+    border: 1px solid rgba(26,127,160,0.2); border-radius: 8px; padding: 28px 20px;
+    text-align: center; background: rgba(28,58,80,0.3); transition: border-color 0.2s;
+  }
+  .assoc-card:hover { border-color: var(--amber); }
+  .assoc-name { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); text-transform: uppercase; }
+  .assoc-tag { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--mid); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .contact-info { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+  .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-item-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border: 1px solid rgba(26,127,160,0.4); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+  }
+  .contact-item-text label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; display: block; }
+  .contact-item-text a, .contact-item-text p {
+    color: var(--light); font-size: 14px; text-decoration: none; margin-top: 2px; display: block; line-height: 1.5;
+  }
+  .contact-item-text a:hover { color: var(--amber); }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; }
+  .contact-form input, .contact-form textarea {
+    background: rgba(13,31,45,0.7); border: 1px solid rgba(26,127,160,0.25);
+    border-radius: 6px; padding: 12px 16px; color: var(--white); font-size: 14px;
+    font-family: 'Inter', sans-serif; transition: border-color 0.2s; resize: vertical;
+    outline: none;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--teal); }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); }
+  .contact-form textarea { min-height: 120px; }
+  .contact-form button {
+    background: var(--amber); color: var(--steel); font-weight: 700; font-size: 14px;
+    padding: 13px; border: none; border-radius: 6px; cursor: pointer;
+    font-family: 'Inter', sans-serif; transition: opacity 0.2s;
+  }
+  .contact-form button:hover { opacity: 0.88; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070F17; padding: 32px 5vw;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: gap;
+    border-top: 1px solid rgba(26,127,160,0.15);
+  }
+  footer p { font-size: 12px; color: var(--muted); }
+  footer .footer-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--teal); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    nav ul { display: none; }
+    .hero h1 { font-size: 48px; }
+    .hero::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark"><span>DE</span></div>
+    <div class="logo-text">Diya Enterprises <small>Engineer's & Contractors</small></div>
+  </a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#equipment">Equipment</a></li>
+    <li><a href="#associates">Associates</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow">Est. 1999 · Dombivali, Mumbai</div>
+  <h1>Built on <em>Quality.</em><br>Delivered on Time.</h1>
+  <p class="hero-sub">From high-rise residential towers to landmark commercial projects — Diya Enterprises has been Mumbai's trusted engineering & contracting partner for over 25 years.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View Projects</a>
+    <a href="#contact" class="btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">25<span>+</span></div>
+      <div class="stat-label">Years Active</div>
+    </div>
+    <div>
+      <div class="stat-num">31<span>+</span></div>
+      <div class="stat-label">Projects Completed</div>
+    </div>
+    <div>
+      <div class="stat-num">50L<span>+</span></div>
+      <div class="stat-label">Sq.ft. Delivered</div>
+    </div>
+    <div>
+      <div class="stat-num">7</div>
+      <div class="stat-label">Team Members</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal">
+    <div class="section-label">About Us</div>
+    <div class="section-title">The Construction of<br><em>New Generation</em></div>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-body reveal">
+      <p>Mr. D. L. Patel founded Diya Enterprises in 1999, arriving in Mumbai with a vision to build excellence into every structure. Over 25 years, that commitment has grown into a company trusted by some of the city's most renowned builders.</p>
+      <p>We believe quality is never an accident — it is the result of honest intention, sincere effort, intelligent direction, and skillful execution. Our rich experience across varied projects in diverse conditions makes us the ideal partner for every kind of construction challenge.</p>
+      <p>Today, we partner with landmark builders like Hiranandani, Nirmal Lifestyle, Kanakia, Ashar Group, R R Developers, and Paradigm Realty, delivering projects that stand as a testament to our standards.</p>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pillar-icon">🏗️</div>
+        <div class="pillar-title">Marvelous Quality</div>
+        <div class="pillar-desc">Uncompromising standards from foundation to finish</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">⚡</div>
+        <div class="pillar-title">Excellent Performance</div>
+        <div class="pillar-desc">Consistent delivery across residential & commercial</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🤝</div>
+        <div class="pillar-title">Good Co-operation</div>
+        <div class="pillar-desc">Seamless coordination with clients, architects & consultants</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">📅</div>
+        <div class="pillar-title">Specified Time Limit</div>
+        <div class="pillar-desc">Disciplined timelines with zero compromise on quality</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS MARQUEE -->
+<section class="clients" id="clients" style="padding: 48px 0;">
+  <div style="padding: 0 5vw; margin-bottom: 28px;" class="reveal">
+    <div class="section-label">Trusted By</div>
+  </div>
+  <div class="clients-marquee">
+    <div class="clients-track">
+      <span class="client-name">Hiranandani</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Nirmal Lifestyle</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Kanakia</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Ashar Group</span>
+      <span class="client-name">·</span>
+      <span class="client-name">R R Developers</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Paradigm</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Naredivala Builders</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Suntec Group</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Maatr Group</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Tridev</span>
+      <span class="client-name">·</span>
+      <!-- duplicate for seamless loop -->
+      <span class="client-name">Hiranandani</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Nirmal Lifestyle</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Kanakia</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Ashar Group</span>
+      <span class="client-name">·</span>
+      <span class="client-name">R R Developers</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Paradigm</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Naredivala Builders</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Suntec Group</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Maatr Group</span>
+      <span class="client-name">·</span>
+      <span class="client-name">Tridev</span>
+      <span class="client-name">·</span>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="reveal">
+    <div class="section-label">Our Team</div>
+    <div class="section-title">The People<br>Behind the <em>Build</em></div>
+    <div class="divider"></div>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">PP</div>
+      <div class="team-name">Pinkesh Patel</div>
+      <div class="team-role">Partner</div>
+      <div class="team-qual">Project planning, client coordination & safety oversight</div>
+      <span class="team-exp">16 Years Experience</span>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">SB</div>
+      <div class="team-name">Shubham Bhoir</div>
+      <div class="team-role">Partner</div>
+      <div class="team-qual">B.E. Civil · Project planning & quality execution</div>
+      <span class="team-exp">9 Years Experience</span>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">HR</div>
+      <div class="team-name">Hiren Rangani</div>
+      <div class="team-role">Partner</div>
+      <div class="team-qual">Diploma in Civil · Planning & RCC coordination</div>
+      <span class="team-exp">15 Years Experience</span>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">RP</div>
+      <div class="team-name">Ritesh V. Patel</div>
+      <div class="team-role">Partner</div>
+      <div class="team-qual">Diploma in Civil · Execution & consultant liaison</div>
+      <span class="team-exp">15 Years Experience</span>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">KR</div>
+      <div class="team-name">Kiran P. Rangani</div>
+      <div class="team-role">Partner</div>
+      <div class="team-qual">B.E. Civil · Specifications, quality & material supervision</div>
+      <span class="team-exp">13 Years Experience</span>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">PR</div>
+      <div class="team-name">Piyush Rangani</div>
+      <div class="team-role">Site Coordinator</div>
+      <div class="team-qual">On-site coordination, safety & programme execution</div>
+      <span class="team-exp">13 Years Experience</span>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">DP</div>
+      <div class="team-name">Dhaval Patel</div>
+      <div class="team-role">Project Coordinator</div>
+      <div class="team-qual">Day-to-day programme coordination & safety</div>
+      <span class="team-exp">13 Years Experience</span>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">UP</div>
+      <div class="team-name">Urmit V. Patel</div>
+      <div class="team-role">Project Manager</div>
+      <div class="team-qual">Diploma in Civil · Planning & execution management</div>
+      <span class="team-exp">8 Years Experience</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="reveal">
+    <div class="section-label">Our Portfolio</div>
+    <div class="section-title">Projects That<br><em>Define</em> Us</div>
+    <div class="divider"></div>
+  </div>
+  <div class="project-tabs reveal">
+    <button class="tab-btn active" onclick="switchTab(event, 'completed')">Completed</button>
+    <button class="tab-btn" onclick="switchTab(event, 'labour')">Ongoing · Labour</button>
+    <button class="tab-btn" onclick="switchTab(event, 'turnkey')">Ongoing · Turnkey</button>
+  </div>
+
+  <div id="completed" class="tab-panel active reveal">
+    <table class="project-table">
+      <thead><tr><th>#</th><th>Client</th><th>Building / Location</th><th>Floors</th><th>Area (sqft)</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>Naredivala Builders</td><td>Newa Garden, Sector 20, Airoli</td><td>G+22</td><td>3,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>02</td><td>Naredivala Builders</td><td>Saptarshi Park, Mulund (W)</td><td>G+21 / G+8</td><td>4,50,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>03</td><td>Cosmos Group</td><td>Cosmos Group, Majivada, Thane</td><td>G+13</td><td>1,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>04</td><td>S D Bhalerao</td><td>S D Bhalerao, Thane</td><td>G+13</td><td>80,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>05</td><td>Naredivala Builders</td><td>Newa Garden Phase 2, Sector 20A, Airoli</td><td>G+16</td><td>1,50,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>06</td><td>Naredivala Builders</td><td>Newa Residency, Sector 8, Ghansoli</td><td>G+7</td><td>75,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>07</td><td>Mahavir Developers</td><td>Newa Heights, Sector 8A, Airoli</td><td>G+13</td><td>90,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>08</td><td>Mohan Group</td><td>Mohan Neno Estate, Ambarnath</td><td>G+18 / G+12</td><td>2,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>09</td><td>Season Builders</td><td>Chamber PT Structure / Season Sahara</td><td>G+7 / G+16</td><td>1,75,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>10</td><td>Sidhivinayak Developers</td><td>Edan (10 Buildings)</td><td>G+2</td><td>70,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>11</td><td>Maatr Group</td><td>Maatr Signature / Waters / Sky</td><td>G+7 / G+16 / G+23</td><td>2,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>12</td><td>Unique Builders</td><td>Unique Builders & Developers, Kalyan</td><td>G+16</td><td>70,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>13</td><td>Uma Group</td><td>Uma Galaxy, Titwala</td><td>G+16</td><td>1,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>14</td><td>Shree Sai Builders</td><td>Kalyan</td><td>G+7</td><td>50,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>15</td><td>Rajendra Enterprises</td><td>Navkar Heights, Kalyan</td><td>B+14</td><td>70,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>16</td><td>Unique Builders</td><td>Azaka, Kalyan</td><td>G+11</td><td>70,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>17</td><td>Suntec Group</td><td>Maxworld Tower 4, Mivan Centuring</td><td>G+23</td><td>5,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>18</td><td>Vardhaman Developers</td><td>Vardhaman Park, Shahad</td><td>G+27</td><td>2,25,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>19</td><td>Padmavati Group</td><td>Padmavati, Titwala</td><td>G+7</td><td>35,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>20</td><td>Vira Builders</td><td>Pooja Madhuban, Dombivali (E)</td><td>G+5</td><td>50,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>21</td><td>Nirmal Lifestyle</td><td>PVR Cinema 7 Screen, Mulund (W)</td><td>G+8</td><td>3,50,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>22</td><td>Nirmal Lifestyle</td><td>Estacy, Nirmal City of Joy, Mulund (W)</td><td>G+10</td><td>3,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>23</td><td>R R Developers</td><td>Neelkanth Heights, Mulund (W)</td><td>G+22</td><td>1,50,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>24</td><td>R R Developers</td><td>Balaji Apartment, Mulund (W)</td><td>G+22</td><td>1,35,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>25</td><td>Kanakia</td><td>Zillion Commercial, Kurla (W)</td><td>G+8</td><td>8,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>26</td><td>Ashar Group</td><td>Billabong Int. School, Thane (W)</td><td>G+10</td><td>90,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>27</td><td>Ashar Group</td><td>Ashar IT Park, Road No 16, Thane (W)</td><td>G+12</td><td>2,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>28</td><td>Hiranandani</td><td>North Point IT Park, Thane (W)</td><td>G+7</td><td>1,00,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>29</td><td>Aditya Associates</td><td>United Business Park, Thane (W)</td><td>G+7</td><td>50,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>30</td><td>Aditya Associates</td><td>Jivan Tara Society</td><td>G+7</td><td>50,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+        <tr><td>31</td><td>Paradigm</td><td>El Signora, Lokhandwala, Andheri</td><td>G+22</td><td>1,50,000</td><td><span class="badge badge-done">Completed</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="labour" class="tab-panel reveal">
+    <table class="project-table">
+      <thead><tr><th>#</th><th>Client</th><th>Building / Location</th><th>Floors</th><th>Area (sqft)</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>Integrity</td><td>Ground Holding</td><td>B2+G+P5+35</td><td>3,50,000</td><td><span class="badge badge-ongoing">In Progress</span></td></tr>
+        <tr><td>02</td><td>Season Group</td><td>Season Mayfair, Kalyan (W)</td><td>G+P+14</td><td>70,000</td><td><span class="badge badge-ongoing">In Progress</span></td></tr>
+        <tr><td>03</td><td>VKG</td><td>Big Bull, Goregaon</td><td>G+20</td><td>1,10,000</td><td><span class="badge badge-ongoing">In Progress</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="turnkey" class="tab-panel reveal">
+    <table class="project-table">
+      <thead><tr><th>#</th><th>Client</th><th>Building / Location</th><th>Floors</th><th>Area (sqft)</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>Parijas Group</td><td>Parijas Greens, Kalyan (W)</td><td>B+G+7</td><td>50,000</td><td><span class="badge badge-ongoing">In Progress</span></td></tr>
+        <tr><td>02</td><td>Umiya Builders</td><td>Om Heights, Bhandup (W)</td><td>G+13</td><td>55,000</td><td><span class="badge badge-ongoing">In Progress</span></td></tr>
+        <tr><td>03</td><td>K. Anand Infra</td><td>Sky View, Andheri (W)</td><td>G+15</td><td>55,000</td><td><span class="badge badge-ongoing">In Progress</span></td></tr>
+        <tr><td>04</td><td>Panchnaad Developers</td><td>Indrapuri CHS, Borivali (W)</td><td>G+22</td><td>60,000</td><td><span class="badge badge-ongoing">In Progress</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- EQUIPMENT -->
+<section class="equipment" id="equipment">
+  <div class="reveal">
+    <div class="section-label">Machinery & Equipment</div>
+    <div class="section-title">Built to Execute<br><em>Any</em> Scale</div>
+    <div class="divider"></div>
+    <p style="color: var(--muted); font-size: 14px; max-width: 500px;">We own and operate a full fleet of civil construction machinery, enabling rapid deployment for projects of any size across India.</p>
+  </div>
+  <div class="equip-grid">
+    <div class="equip-card reveal"><div class="equip-icon">🏗️</div><div class="equip-name">Tower Crane</div><div class="equip-qty">01</div><div class="equip-unit">nos.</div></div>
+    <div class="equip-card reveal"><div class="equip-icon">🔄</div><div class="equip-name">Mixture Machine</div><div class="equip-qty">08</div><div class="equip-unit">nos.</div></div>
+    <div class="equip-card reveal"><div class="equip-icon">🛗</div><div class="equip-name">Lift Machine (Hoist)</div><div class="equip-qty">08</div><div class="equip-unit">nos.</div></div>
+    <div class="equip-card reveal"><div class="equip-icon">🔩</div><div class="equip-name">Bending Machine</div><div class="equip-qty">10</div><div class="equip-unit">nos.</div></div>
+    <div class="equip-card reveal"><div class="equip-icon">✂️</div><div class="equip-name">Cutting Machine</div><div class="equip-qty">08</div><div class="equip-unit">nos.</div></div>
+    <div class="equip-card reveal"><div class="equip-icon">🧱</div><div class="equip-name">Acrow Shuttering</div><div class="equip-qty">50,000</div><div class="equip-unit">sqft capacity</div></div>
+  </div>
+</section>
+
+<!-- ASSOCIATES -->
+<section class="associates" id="associates">
+  <div class="reveal">
+    <div class="section-label">Group Companies</div>
+    <div class="section-title">Our Associate<br><em>Companies</em></div>
+    <div class="divider"></div>
+  </div>
+  <div class="assoc-grid">
+    <div class="assoc-card reveal"><div class="assoc-name">Diya Enterprises</div><div class="assoc-tag">Engineer's & Contractors</div></div>
+    <div class="assoc-card reveal"><div class="assoc-name">Pragati Enterprises</div><div class="assoc-tag">Engineer's & Contractors</div></div>
+    <div class="assoc-card reveal"><div class="assoc-name">Sunrise Infra</div><div class="assoc-tag">Infrastructure</div></div>
+    <div class="assoc-card reveal"><div class="assoc-name">Dharmi Enterprises</div><div class="assoc-tag">Construction</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <div class="section-label">Get In Touch</div>
+    <div class="section-title">Let's Build<br><em>Together</em></div>
+    <div class="divider"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div class="contact-item-text">
+          <label>Phone</label>
+          <a href="tel:+919833521342">Pinkesh Patel: +91 98335 21342</a>
+          <a href="tel:+917700006020">Shubham Bhoir: +91 77000 06020</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div class="contact-item-text">
+          <label>Email</label>
+          <a href="mailto:diyaentertrisescontractor@gmail.com">diyaentertrisescontractor@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div class="contact-item-text">
+          <label>Office Address</label>
+          <p>Shop No. 2, Rama Galaxy, Ramanagar,<br>Tukaram Chowk, Dawadi Gaon,<br>Dombivali – 421 203</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="reveal" style="margin-bottom: 16px;">
+        <p style="color: var(--muted); font-size: 14px;">Have a project in mind? Send us a message and our team will get back to you within 24 hours.</p>
+      </div>
+      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="tel" placeholder="Phone Number">
+        <input type="text" placeholder="Project / Subject">
+        <textarea placeholder="Tell us about your project..."></textarea>
+        <button type="submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Diya Enterprises</div>
+    <p style="margin-top: 4px;">Engineer's & Contractors · Dombivali, Mumbai</p>
+  </div>
+  <p>© 2024 Diya Enterprises. All rights reserved.</p>
+</footer>
+
+<script>
+  // Tab switching
+  function switchTab(e, id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#20a060';
+    setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; e.target.reset(); }, 3000);
+  }
+</script>
+</body>
+</html>
